@@ -64,6 +64,7 @@ array_map(function ($file) use ($sage_error) {
 	'filters',
 	'admin',
 	'cleanup',
+	'globals',
 	'acf_settings',
 ]);
 
