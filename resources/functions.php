@@ -61,6 +61,7 @@ array_map(function ($file) use ($sage_error) {
 }, [
 	'helpers',
 	'setup',
+	'actions',
 	'filters',
 	'admin',
 	'cleanup',
