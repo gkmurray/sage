@@ -40,14 +40,6 @@ add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
 
     /**
-     * Register navigation menus
-     * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
-     */
-    register_nav_menus([
-        'primary_navigation' => __('Primary Navigation', 'sage')
-    ]);
-
-    /**
      * Enable post thumbnails
      * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
      */
@@ -70,27 +62,50 @@ add_action('after_setup_theme', function () {
      * @see resources/assets/styles/layouts/_tinymce.scss
      */
     add_editor_style(asset_path('styles/main.css'));
+
+    /**
+    * Register navigation menus
+    * @link https://developer.wordpress.org/reference/functions/register_nav_menus/
+    */
+    register_nav_menus([
+        'menu' => __('Menu', 'sage')
+    ]);
+
+    /**
+    * Add custom image sizes
+    * @link https://developer.wordpress.org/reference/functions/add_image_size/
+    */
+    add_image_size('xlarge', 1920);
+
+    /**
+    * Make theme available for translation.
+    */
+    load_theme_textdomain('sage', get_template_directory() . '/languages');
 }, 20);
 
 /**
- * Register sidebars
- */
-add_action('widgets_init', function () {
-    $config = [
-        'before_widget' => '<section class="widget %1$s %2$s">',
-        'after_widget'  => '</section>',
-        'before_title'  => '<h3>',
-        'after_title'   => '</h3>'
-    ];
-    register_sidebar([
-        'name'          => __('Primary', 'sage'),
-        'id'            => 'sidebar-primary'
-    ] + $config);
-    register_sidebar([
-        'name'          => __('Footer', 'sage'),
-        'id'            => 'sidebar-footer'
-    ] + $config);
-});
+* Cleanup Wordpress
+*/
+add_action('after_setup_theme', function () {
+    /** Remove category feeds */
+    remove_action('wp_head', 'feed_links_extra', 3);
+    /** Remove post and comment feeds */
+    remove_action('wp_head', 'feed_links', 2);
+    /** Remove EditURI link */
+    remove_action('wp_head', 'rsd_link');
+    /** Remove Windows live writer */
+    remove_action('wp_head', 'wlwmanifest_link');
+    /** Remove index link */
+    remove_action('wp_head', 'index_rel_link');
+    /** Remove previous link */
+    remove_action('wp_head', 'parent_post_rel_link', 10, 0);
+    /** Remove start link */
+    remove_action('wp_head', 'start_post_rel_link', 10, 0);
+    /** Remove links for adjacent posts */
+    remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+    /** Remove WP version */
+    remove_action('wp_head', 'wp_generator');
+}, 20);
 
 /**
  * Updates the `$post` variable on each iteration of the loop.

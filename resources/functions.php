@@ -6,6 +6,7 @@
 
 use Roots\Sage\Config;
 use Roots\Sage\Container;
+use App\Lib\AcfLoader;
 
 /**
  * Helper function for prettying up errors
@@ -58,7 +59,18 @@ array_map(function ($file) use ($sage_error) {
     if (!locate_template($file, true, true)) {
         $sage_error(sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file), 'File not found');
     }
-}, ['helpers', 'setup', 'filters', 'admin']);
+}, [
+    'helpers',
+    'setup',
+    'admin',
+    'actions',
+    'filters',
+    'globals',
+    'menus',
+    'sidebars',
+    'shortcodes',
+    'posttypes',
+]);
 
 /**
  * Here's what's happening with these hooks:
@@ -90,3 +102,10 @@ Container::getInstance()
             'view' => require dirname(__DIR__).'/config/view.php',
         ]);
     }, true);
+
+/**
+ * Bootstrap Advanced Custom Fields
+ */
+AcfLoader::get_instance()
+    ->register_actions()
+    ->register_custom_location_rules();

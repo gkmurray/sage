@@ -4,53 +4,85 @@
  */
 
 /** Media alignment */
+.alignnone,
+.alignleft,
+.aligncenter,
+.alignright {
+    display: block;
+    margin: 0 auto;
+    height: auto;
+    max-width: 100%;
+}
+
 .alignnone {
-  margin-left: 0;
-  margin-right: 0;
-  max-width: 100%;
-  height: auto;
+    @include breakpoint(medium) {
+        margin-left: 0;
+        margin-right: 0;
+        display: inline-block;
+    }
 }
 
 .aligncenter {
-  display: block;
-  margin: ($spacer / 2) auto;
-  height: auto;
+    @include -zf-breakpoint-value(auto, $grid-padding-gutters) {
+        margin: (rem-calc($-zf-bp-value) / 2) auto;
+    }
 }
 
 .alignleft,
 .alignright {
-  margin-bottom: ($spacer / 2);
-  height: auto;
+    height: auto;
+
+    @include -zf-breakpoint-value(auto, $grid-padding-gutters) {
+        margin-bottom: (rem-calc($-zf-bp-value) / 2);
+    }
 }
 
-@include media-breakpoint-up(sm) {
-  .alignleft {
-    float: left;
-    margin-right: ($spacer / 2);
-  }
+@include breakpoint(medium) {
+    .alignleft {
+        float: left;
 
-  .alignright {
-    float: right;
-    margin-left: ($spacer / 2);
-  }
+        @include -zf-breakpoint-value(medium, $grid-padding-gutters) {
+            margin-right: (rem-calc($-zf-bp-value) / 2);
+        }
+    }
+
+    .alignright {
+        float: right;
+
+        @include -zf-breakpoint-value(medium, $grid-padding-gutters) {
+            margin-left: (rem-calc($-zf-bp-value) / 2);
+        }
+    }
 }
 
 /** Captions */
-.wp-caption {
-  @extend .figure;
-}
-
-.wp-caption img {
-  @extend .figure-img;
-  @extend .img-fluid;
-}
-
-.wp-caption-text {
-  @extend .figure-caption;
-}
+// TODO: .wp-caption {}
+// TODO: .wp-caption img {}
+// TODO: .wp-caption-text {}
 
 /** Text meant only for screen readers */
 .screen-reader-text {
-  @extend .sr-only;
-  @extend .sr-only-focusable;
+    @extend .show-on-focus;
+}
+
+.twitter-tweet {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wp-caption-text {
+    font-size: 85%;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    .gallery-item {
+        .gallery-caption {
+            display: none;
+        }
+    }
 }

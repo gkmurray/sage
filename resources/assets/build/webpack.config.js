@@ -27,9 +27,9 @@ let webpackConfig = {
     version: false,
     timings: false,
     children: false,
-    errors: false,
-    errorDetails: false,
-    warnings: false,
+    errors: true,
+    errorDetails: true,
+    warnings: true,
     chunks: false,
     modules: false,
     reasons: false,
@@ -65,7 +65,7 @@ let webpackConfig = {
           fallback: 'style',
           use: [
             { loader: 'cache' },
-            { loader: 'css', options: { sourceMap: config.enabled.sourceMaps } },
+            { loader: 'css', options: { sourceMap: false } },
             {
               loader: 'postcss', options: {
                 config: { path: __dirname, ctx: config },
@@ -82,7 +82,7 @@ let webpackConfig = {
           fallback: 'style',
           use: [
             { loader: 'cache' },
-            { loader: 'css', options: { sourceMap: config.enabled.sourceMaps } },
+            { loader: 'css', options: { sourceMap: false } },
             {
               loader: 'postcss', options: {
                 config: { path: __dirname, ctx: config },
@@ -182,6 +182,14 @@ let webpackConfig = {
       syntax: 'scss',
     }),
     new FriendlyErrorsWebpackPlugin(),
+    /**
+     * This hack removes all other locals except en from moment.js,
+     * significantly reducing the final bundle size
+     */
+    new webpack.ContextReplacementPlugin(
+      /moment[/\\]locale$/,
+      /en/
+    ),
   ],
 };
 

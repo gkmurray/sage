@@ -136,3 +136,32 @@ function display_sidebar()
     isset($display) || $display = apply_filters('sage/display_sidebar', false);
     return $display;
 }
+
+/**
+ * Add attributes to post links
+ */
+function post_link_attributes($output)
+{
+    $code = 'class="button"';
+    return str_replace('<a href=', '<a '.$code.' href=', $output);
+}
+
+/**
+ * Tests if any of a post's assigned categories are descendants of target categories
+ *
+ * @param int|array $cats The target categories. Integer ID or array of integer IDs
+ * @param int|object $_post The post. Omit to test the current post in the Loop or main query
+ * @return bool True if at least 1 of the post's categories is a descendant of any of the target categories
+ * @link http://codex.wordpress.org/Function_Reference/in_category#Testing_if_a_post_is_in_a_descendant_category
+ */
+function in_descendant_category($cats, $_post = null)
+{
+    foreach ((array) $cats as $cat) {
+        // get_term_children() accepts integer ID only
+        $descendants = get_term_children((int) $cat, 'category');
+        if ($descendants && in_category($descendants, $_post)) {
+            return true;
+        }
+    }
+    return false;
+}

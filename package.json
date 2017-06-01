@@ -22,11 +22,74 @@
     "android 4",
     "opera 12"
   ],
+  "eslintConfig": {
+    "root": true,
+    "extends": "eslint:recommended",
+    "globals": {
+      "wp": true
+    },
+    "env": {
+      "node": true,
+      "es6": true,
+      "amd": true,
+      "browser": true,
+      "jquery": true
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "globalReturn": true,
+        "generators": false,
+        "objectLiteralDuplicateProperties": false,
+        "experimentalObjectRestSpread": true
+      },
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "import"
+    ],
+    "settings": {
+      "import/core-modules": [],
+      "import/ignore": [
+        "node_modules",
+        "\\.(coffee|scss|css|less|hbs|svg|json)$"
+      ]
+    },
+    "rules": {
+      "comma-dangle": [
+        "error",
+        {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "ignore"
+        }
+      ]
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "no-empty-source": null,
+      "indentation": 4,
+      "no-eol-whitespace": [
+        true,
+        {
+          "ignore": [
+            "empty-lines"
+          ]
+        }
+      ]
+    }
+  },
   "scripts": {
     "build": "webpack --progress --config resources/assets/build/webpack.config.js",
     "build:production": "webpack --env.production --progress --config resources/assets/build/webpack.config.js",
     "build:profile": "webpack --progress --profile --json --config resources/assets/build/webpack.config.js",
     "start": "webpack --hide-modules --watch --config resources/assets/build/webpack.config.js",
+    "bundle": "cross-var zip -r $npm_package_name-$npm_package_version.zip app dist vendor config resources/acf-json resources/languages resources/views resources/index.php resources/functions.php resources/style.css resources/screenshot.png",
+    "rmbundle": "cross-var rm $npm_package_name-$npm_package_version.zip",
     "rmdist": "rimraf dist",
     "lint": "npm run -s lint:scripts && npm run -s lint:styles",
     "lint:scripts": "eslint resources/assets/scripts resources/assets/build",
@@ -48,6 +111,7 @@
     "css-loader": "^0.28.9",
     "cssnano": "~4.0.5",
     "eslint": "~4.19.1",
+    "cross-var": "^1.0.3",
     "eslint-loader": "~1.9",
     "eslint-plugin-import": "~2.14.0",
     "extract-text-webpack-plugin": "~3.0.2",
@@ -76,8 +140,10 @@
     "yargs": "~11.0.0"
   },
   "dependencies": {
-    "bootstrap": "v4.3.1",
+    "font-awesome": "^4.7.0",
+    "foundation-sites": "^6.4.0",
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.7"
+    "popper.js": "^1.14.7",
+    "motion-ui": "^1.2.2"
   }
 }
