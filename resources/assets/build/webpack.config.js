@@ -177,6 +177,14 @@ let webpackConfig = {
       syntax: 'scss',
     }),
     new FriendlyErrorsWebpackPlugin(),
+    /**
+     * This hack removes all other locals except en from moment.js,
+     * significantly reducing the final bundle size
+     */
+    new webpack.ContextReplacementPlugin(
+      /moment[Í/\\]locale$/,
+      /en/
+    ),
   ],
 };
 
