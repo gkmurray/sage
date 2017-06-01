@@ -59,11 +59,12 @@ array_map(function ($file) use ($sage_error) {
         $sage_error(sprintf(__('Error locating <code>%s</code> for inclusion.', 'sage'), $file), 'File not found');
     }
 }, [
-    'helpers',
-    'setup',
-    'filters',
-    'admin',
-    'cleanup',
+	'helpers',
+	'setup',
+	'filters',
+	'admin',
+	'cleanup',
+	'acf_settings',
 ]);
 
 /**
