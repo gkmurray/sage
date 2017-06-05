@@ -8,9 +8,7 @@ php:
 
 branches:
   only:
-    - master
     - develop
-    - add-unit-tests
 
 env:
   global:
