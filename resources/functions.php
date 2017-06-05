@@ -106,8 +106,7 @@ Container::getInstance()
 /**
  * Check for and include ACF Pro files
  */
-if(!class_exists('acf') &&  file_exists(get_stylesheet_directory() . '/../vendor/advanced-custom-fields-pro/acf.php')) {
-
+if (!class_exists('acf') && file_exists(get_stylesheet_directory() . '/../vendor/advanced-custom-fields-pro/acf.php')) {
     include_once(get_stylesheet_directory() . '/../vendor/advanced-custom-fields-pro/acf.php');
 
     // Set ACF path
@@ -124,26 +123,26 @@ if(!class_exists('acf') &&  file_exists(get_stylesheet_directory() . '/../vendor
 
     // Hide ACF menu item
     // TODO: Update this conditional to use defined constant from wp_config.php
-    if(false) {
+    if (false) {
         add_filter('acf/settings/show_admin', '__return_false');
     }
-}
-/**
- * Display warning if ACF is not installed
- */
-else if(!class_exists('acf')) {
-    add_action('admin_notices', function() {
+} elseif (!class_exists('acf')) {
+    /**
+    * Display warning if ACF is not installed
+    */
+    add_action('admin_notices', function () {
         $class = 'notice notice-error';
-        $message = __( 'ACF not activated. Make sure you activate the Advanced Custom Fields plugin in the WordPress admin area, or include the files in the vendor folder.', 'sage' );
+        $message = __('ACF not activated. Make sure you activate the Advanced Custom Fields plugin in the
+            WordPress admin area, or include the files in the vendor folder.', 'sage');
 
         printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
     });
 
-    add_filter('template_include', function($template) use ($sage_error) {
+    add_filter('template_include', function ($template) use ($sage_error) {
         $sage_error(
-            __('Make sure you activate the Advanced Custom Fields plugin in the WordPress admin area, or include the files in the vendor folder.', 'sage'),
+            __('Make sure you activate the Advanced Custom Fields plugin in the WordPress admin area, or include
+             the files in the vendor folder.', 'sage'),
             __('ACF not activated', 'sage')
         );
     });
 }
-

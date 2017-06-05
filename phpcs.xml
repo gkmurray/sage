@@ -68,4 +68,9 @@
   <rule ref="PSR2.Files.ClosingTag.NotAllowed">
     <exclude-pattern>resources/views</exclude-pattern>
   </rule>
+  
+  <!-- This rule does not play nice while extending Wordpress core -->
+  <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+    <exclude-pattern>app</exclude-pattern>
+  </rule>
 </ruleset>
