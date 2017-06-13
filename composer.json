@@ -47,7 +47,6 @@
     "test": [
       "phpcs && phpunit"
     ],
-
     "post-create-project-cmd": [
       "Roots\\Sage\\Installer\\ComposerScript::postCreateProject"
     ]
