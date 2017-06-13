@@ -40,10 +40,14 @@
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^2.8.0",
+    "phpunit/phpunit": "5.7.*",
     "roots/sage-installer": "~1.3"
   },
   "scripts": {
-    "test": ["phpcs"],
+    "test": [
+      "phpcs && phpunit"
+    ],
+
     "post-create-project-cmd": [
       "Roots\\Sage\\Installer\\ComposerScript::postCreateProject"
     ]

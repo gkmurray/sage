@@ -51,4 +51,3 @@ script:
   - yarn run rmdist
   - yarn run "build:production"
   - composer test
-  - phpunit
