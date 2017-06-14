@@ -50,4 +50,6 @@ script:
   - yarn run build
   - yarn run rmdist
   - yarn run "build:production"
+  - yarn run bundle
+  - yarn run rmbundle
   - composer test

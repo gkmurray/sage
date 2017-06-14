@@ -20,6 +20,8 @@ pipelines:
                     - yarn run build
                     - yarn run rmdist
                     - yarn run build:production
+                    - yarn run bundle
+                    - yarn run rmbundle
                     # Configure php
                     - php -m
                     - docker-php-ext-install mysqli
