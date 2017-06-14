@@ -25,8 +25,6 @@ echo "Updating public path..."
 pattern="s#${DEFAULT_PUBLIC_PATH}#${PUBLIC_PATH}#g;s#${DEFAULT_DEV_URL}#${DEV_URL}#g"
 sed -i $pattern ./resources/assets/config.json
 
-echo $REPLACE_TEXT_DOMAIN
-
 if [ ${REPLACE_TEXT_DOMAIN} = "true" ]; then
     echo "Searching for files containing ${DEFAULT_SLUG}..."
     pattern="s/'${DEFAULT_SLUG}'/'${SLUG}'/g"
