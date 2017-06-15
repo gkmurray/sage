@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ $# -lt 1 ]; then
-    echo "usage: $0 <slug> [dev-url] [replace-text-domain]"
+    echo "usage: $0 <slug> [replace-text-domain] [dev-url]"
     exit 1
 fi
 
@@ -10,8 +10,8 @@ DEFAULT_PUBLIC_PATH="/app/themes/sage"
 DEFAULT_DEV_URL="example.dev"
 
 SLUG=$1
-DEV_URL=${2-${SLUG}.wordpress.dev}
-REPLACE_TEXT_DOMAIN=${3-false}
+REPLACE_TEXT_DOMAIN=${2-false}
+DEV_URL=${3-${SLUG}.wordpress.dev}
 PUBLIC_PATH="/wp-content/themes/${SLUG}"
 
 # portable in-place argument for both GNU sed and Mac OSX sed
