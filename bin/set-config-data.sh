@@ -27,8 +27,13 @@ fi
 # Check your input first if there are errors
 
 echo "Updating public path..."
-pattern="s#${DEFAULT_PUBLIC_PATH}#${PUBLIC_PATH}#g;s#${DEFAULT_DEV_URL}#${DEV_URL}#g"
-sed "${ioption[@]}" $pattern ./resources/assets/config.json
+FILE="./resources/assets/config-local.json"
+cat > $FILE <<EOF
+{
+  "publicPath": "${PUBLIC_PATH}",
+  "devUrl": "http://${DEV_URL}"
+}
+EOF
 
 if [ ${REPLACE_TEXT_DOMAIN} = "true" ]; then
     echo "Searching for files containing ${DEFAULT_SLUG}..."
