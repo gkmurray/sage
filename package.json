@@ -71,7 +71,16 @@
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
-      "no-empty-source": null
+      "no-empty-source": null,
+      "indentation": 4,
+      "no-eol-whitespace": [
+        true,
+        {
+          "ignore": [
+            "empty-lines"
+          ]
+        }
+      ]
     }
   },
   "scripts": {
@@ -132,6 +141,7 @@
   "dependencies": {
     "font-awesome": "^4.7.0",
     "foundation-sites": "^6.4.0",
-    "jquery": "1.12.4 - 3"
+    "jquery": "1.12.4 - 3",
+    "motion-ui": "^1.2.2"
   }
 }
