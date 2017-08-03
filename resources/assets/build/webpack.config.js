@@ -64,7 +64,7 @@ let webpackConfig = {
           fallback: 'style',
           use: [
             { loader: 'cache' },
-            { loader: 'css', options: { sourceMap: config.enabled.sourceMaps } },
+            { loader: 'css', options: { sourceMap: false } },
             {
               loader: 'postcss', options: {
                 config: { path: __dirname, ctx: config },
@@ -81,7 +81,7 @@ let webpackConfig = {
           fallback: 'style',
           use: [
             { loader: 'cache' },
-            { loader: 'css', options: { sourceMap: config.enabled.sourceMaps } },
+            { loader: 'css', options: { sourceMap: false } },
             {
               loader: 'postcss', options: {
                 config: { path: __dirname, ctx: config },
