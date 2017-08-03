@@ -182,7 +182,7 @@ let webpackConfig = {
      * significantly reducing the final bundle size
      */
     new webpack.ContextReplacementPlugin(
-      /moment[Í/\\]locale$/,
+      /moment[/\\]locale$/,
       /en/
     ),
   ],

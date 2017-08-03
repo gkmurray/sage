@@ -1,17 +1,17 @@
 /** Search form */
 .search-form {
-  @extend .input-group;
+    @extend .input-group;
 }
 
 .search-form label {
-  font-weight: normal;
+    font-weight: normal;
 }
 
 .search-form .search-field {
-  @extend .input-group-field;
+    @extend .input-group-field;
 }
 
 .search-form .search-submit {
-  @extend .button;
-  @extend .secondary;
+    @extend .button;
+    @extend .secondary;
 }

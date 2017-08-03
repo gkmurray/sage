@@ -1,12 +1,12 @@
 .comment-list {
-  @extend .no-bullet;
+    @extend .no-bullet;
 }
 
 .comment-list ol {
-  list-style: none;
+    list-style: none;
 }
 
 .comment-form input[type="submit"] {
-  @extend .button;
-  @extend .secondary;
+    @extend .button;
+    @extend .secondary;
 }
