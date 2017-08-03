@@ -106,18 +106,18 @@ Container::getInstance()
 /**
  * Check for and include ACF Pro files
  */
-if (!class_exists('acf') && file_exists(get_stylesheet_directory() . '/../vendor/advanced-custom-fields-pro/acf.php')) {
-    include_once(get_stylesheet_directory() . '/../vendor/advanced-custom-fields-pro/acf.php');
+if (!class_exists('acf') && file_exists(get_stylesheet_directory() . '/../../vendor/advanced-custom-fields-pro/acf.php')) {
+    include_once(get_stylesheet_directory() . '/../../vendor/advanced-custom-fields-pro/acf.php');
 
     // Set ACF path
     add_filter('acf/settings/path', function ($path) {
-        $path = get_stylesheet_directory() . '/../vendor/advanced-custom-fields-pro/';
+        $path = get_stylesheet_directory() . '/../../vendor/advanced-custom-fields-pro/';
         return $path;
     });
 
     // Set ACF dir
     add_filter('acf/settings/dir', function ($dir) {
-        $dir = get_stylesheet_directory_uri() . '/vendor/advanced-custom-fields-pro/';
+        $dir = get_stylesheet_directory_uri() . '/../../vendor/advanced-custom-fields-pro/';
         return $dir;
     });
 
