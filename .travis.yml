@@ -53,3 +53,4 @@ script:
   - yarn run bundle
   - yarn run rmbundle
   - composer test
+  - composer make-pot
