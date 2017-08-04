@@ -3,6 +3,9 @@ pipelines:
     branches:
         master:
             - step:
+                caches:
+                    - node
+                    - composer
                 script:
                     # Install nvm
                     - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash && source ~/.nvm/nvm.sh
@@ -11,7 +14,7 @@ pipelines:
                     - nvm install 6 && nvm use 6
                     - node -v
                     # Install yarn
-                    - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.18.1
+                    - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.24.5
                     - export PATH=$HOME/.yarn/bin:$PATH
                     - yarn -V
                     # Install yarn dependencies
@@ -20,17 +23,28 @@ pipelines:
                     - yarn run build
                     - yarn run rmdist
                     - yarn run build:production
-                    - yarn run bundle
-                    - yarn run rmbundle
                     # Configure php
-                    - php -m
                     - docker-php-ext-install mysqli
                     # Get dependencies
-                    - apt-get update && apt-get install -y unzip subversion
+                    - apt-get update && apt-get install -y unzip subversion gettext
                     # Install composer
                     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
                     # Install composer dependencies
                     - composer install --no-interaction --no-progress --prefer-dist
-                    # Run phpcs
-                    - ./vendor/bin/phpcs
-                    # TODO: Configure setup script and phpunit to run on Pipelines
+                    # Setup test wordpress
+                    - bash bin/install-wp-tests.sh wordpress_test test_user password 127.0.0.1 latest true
+                    # PHPCS and PHPUnit
+                    - composer test
+                    # Test gettext
+                    - composer make-pot
+                services:
+                    - database
+definitions:
+    services:
+        database:
+            image: mysql
+            environment:
+                MYSQL_DATABASE: 'wordpress_test'
+                MYSQL_RANDOM_ROOT_PASSWORD: 'yes'
+                MYSQL_USER: 'test_user'
+                MYSQL_PASSWORD: 'password'
