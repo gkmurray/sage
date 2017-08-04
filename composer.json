@@ -47,6 +47,9 @@
     "test": [
       "phpcs && phpunit"
     ],
+    "make-pot": [
+      "find -iname \"*.php\" -not -path \"./vendor/*\" | xargs xgettext --language=Python --add-comments=TRANSLATORS --force-po --from-code=UTF-8 --default-domain=sage -k__ -k_e -k_n:1,2 -k_x:1,2c -k_ex:1,2c -k_nx:1,2,4c -kesc_attr__ -kesc_attr_e -kesc_attr_x:1,2 -kesc_html__ -kesc_html_e -kesc_html_x:1,2 -k_n_noop:1,2 -k_nx_noop:1,2,3c -o ./resources/languages/sage.pot"
+    ],
     "post-create-project-cmd": [
       "Roots\\Sage\\Installer\\ComposerScript::postCreateProject"
     ]
