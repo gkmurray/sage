@@ -17,25 +17,21 @@ pipelines:
                     - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.24.5
                     - export PATH=$HOME/.yarn/bin:$PATH
                     - yarn -V
-                    # Install yarn dependencies
+                    # Install composer
+                    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+                    # Install dependencies
+                    - docker-php-ext-install mysqli
+                    - apt-get update && apt-get install -y unzip subversion gettext
                     - yarn
+                    - composer install --no-interaction --no-progress --prefer-dist
+                    # Setup test wordpress
+                    - bash bin/install-wp-tests.sh wordpress_test test_user password 127.0.0.1 latest true
+                    # Run scripts
                     - yarn run test
                     - yarn run build
                     - yarn run rmdist
                     - yarn run build:production
-                    # Configure php
-                    - docker-php-ext-install mysqli
-                    # Get dependencies
-                    - apt-get update && apt-get install -y unzip subversion gettext
-                    # Install composer
-                    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-                    # Install composer dependencies
-                    - composer install --no-interaction --no-progress --prefer-dist
-                    # Setup test wordpress
-                    - bash bin/install-wp-tests.sh wordpress_test test_user password 127.0.0.1 latest true
-                    # PHPCS and PHPUnit
                     - composer test
-                    # Test gettext
                     - composer make-pot
                 services:
                     - database
