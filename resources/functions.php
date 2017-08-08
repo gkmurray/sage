@@ -117,7 +117,7 @@ if (!class_exists('acf') && file_exists(get_stylesheet_directory() . '/../vendor
 
     // Set ACF dir
     add_filter('acf/settings/dir', function ($dir) {
-        $dir = get_stylesheet_directory_uri() . '/vendor/advanced-custom-fields-pro/';
+        $dir = get_stylesheet_directory_uri() . '/../vendor/advanced-custom-fields-pro/';
         return $dir;
     });
 
