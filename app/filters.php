@@ -167,3 +167,10 @@ add_filter('nav_menu_css_class', function ($classes, $item) {
     }
     return $classes;
 }, 10, 2);
+
+/**
+ * Wrap embeds in Foundation's Responsive Embed class
+ */
+ add_filter('embed_oembed_html', function ($cache, $url, $attr, $post_id) {
+    return '<div class="responsive-embed widescreen">' . $cache . '</div>';
+}, 10, 4);
