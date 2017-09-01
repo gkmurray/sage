@@ -61,15 +61,16 @@ array_map(function ($file) use ($sage_error) {
 }, [
     'helpers',
     'setup',
+    'admin',
     'actions',
     'filters',
-    'admin',
     'cleanup',
     'globals',
-    'acf_settings',
     'menus',
     'sidebars',
     'shortcodes',
+    'posttypes',
+    'acf_settings',
 ]);
 
 /**
