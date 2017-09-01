@@ -28,30 +28,30 @@ add_action('wp_head', function () {
                  (isset($_GET['sticky']) && $_GET['sticky'] == 'sticky') ? 1 : 0;
 
     update_post_meta($post_id, 'custom_sticky', $is_sticky);
-});
+ });
 
 /**
  * Update Main Query on Blog page to order sticky posts
  */
-add_action('pre_get_posts', function ($query) {
+ add_action('pre_get_posts', function ($query) {
     if ($query->is_home() && $query->is_main_query()) {
         $query->set('ignore_sticky_posts', 1);
         $query->set('meta_key', 'custom_sticky');
         $query->set('orderby', array('meta_value_num' => 'DESC', 'date' => 'DESC'));
     }
-});
+ });
 
 /**
  * Remove custom Sticky meta data on theme deactivation
  */
-add_action('switch_theme', function () {
+ add_action('switch_theme', function () {
     delete_metadata('post', null, 'custom_sticky', null, true);
-});
+ });
 
 /**
  * Add custom Sticky meta data on theme activation
  */
-add_action('after_switch_theme', function () {
+ add_action('after_switch_theme', function () {
     $blog_posts = get_posts([
         'post_status' => 'any',
         'numberposts' => -1,
@@ -68,4 +68,4 @@ add_action('after_switch_theme', function () {
             add_post_meta($blog_post->ID, 'custom_sticky', is_sticky($blog_post->ID) ? 1 : 0);
         }
     }
-});
+ });
