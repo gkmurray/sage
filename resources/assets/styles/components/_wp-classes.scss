@@ -4,17 +4,25 @@
  */
 
 /** Media alignment */
-.alignnone {
-    margin-left: 0;
-    margin-right: 0;
-    max-width: 100%;
+.alignnone,
+.alignleft,
+.aligncenter,
+.alignright {
+    display: block;
+    margin: 0 auto;
     height: auto;
+    max-width: 100%;
+}
+
+.alignnone {
+    @include breakpoint(medium) {
+        margin-left: 0;
+        margin-right: 0;
+        display: inline-block;
+    }
 }
 
 .aligncenter {
-    display: block;
-    height: auto;
-
     @include -zf-breakpoint-value(auto, $grid-padding-gutters) {
         margin: (rem-calc($-zf-bp-value) / 2) auto;
     }
@@ -55,4 +63,26 @@
 /** Text meant only for screen readers */
 .screen-reader-text {
     @extend .show-on-focus;
+}
+
+.twitter-tweet {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wp-caption-text {
+    font-size: 85%;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    .gallery-item {
+        .gallery-caption {
+            display: none;
+        }
+    }
 }
