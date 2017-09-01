@@ -29,6 +29,12 @@ function get_shortcode_tags()
     return $shortcode_tags;
 }
 
+function get_wp_widget_factory()
+{
+    global $wp_widget_factory;
+    return $wp_widget_factory;
+}
+
 function global_post_setup($new_post)
 {
     global $post;

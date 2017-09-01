@@ -112,3 +112,27 @@ add_action('after_setup_theme', function () {
         return "<?= " . __NAMESPACE__ . "\\asset_path({$asset}); ?>";
     });
 });
+
+/**
+* Cleanup Wordpress
+*/
+add_action('after_setup_theme', function () {
+    /** Remove category feeds */
+    remove_action('wp_head', 'feed_links_extra', 3);
+    /** Remove post and comment feeds */
+    remove_action('wp_head', 'feed_links', 2);
+    /** Remove EditURI link */
+    remove_action('wp_head', 'rsd_link');
+    /** Remove Windows live writer */
+    remove_action('wp_head', 'wlwmanifest_link');
+    /** Remove index link */
+    remove_action('wp_head', 'index_rel_link');
+    /** Remove previous link */
+    remove_action('wp_head', 'parent_post_rel_link', 10, 0);
+    /** Remove start link */
+    remove_action('wp_head', 'start_post_rel_link', 10, 0);
+    /** Remove links for adjacent posts */
+    remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+    /** Remove WP version */
+    remove_action('wp_head', 'wp_generator');
+});

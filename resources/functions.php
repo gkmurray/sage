@@ -64,7 +64,6 @@ array_map(function ($file) use ($sage_error) {
     'admin',
     'actions',
     'filters',
-    'cleanup',
     'globals',
     'menus',
     'sidebars',

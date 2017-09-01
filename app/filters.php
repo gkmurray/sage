@@ -175,8 +175,38 @@ add_filter('nav_menu_css_class', function ($classes, $item) {
 }, 10, 2);
 
 /**
+ * Stop WordPress from using the sticky class (which conflicts with Foundation), and style WordPress
+ * sticky posts using the .wp-sticky class instead
+ */
+ add_filter('post_class', function ($classes) {
+    if (in_array('sticky', $classes)) {
+        $classes = array_diff($classes, array("sticky"));
+        $classes[] = 'wp-sticky';
+    }
+
+    return $classes;
+});
+
+/**
  * Wrap embeds in Foundation's Responsive Embed class
  */
  add_filter('embed_oembed_html', function ($cache, $url, $attr, $post_id) {
     return '<div class="responsive-embed widescreen">' . $cache . '</div>';
 }, 10, 4);
+
+/**
+* Remove pesky injected css for recent comments widget
+*/
+add_filter('wp_head', function () {
+    if (has_filter('wp_head', 'wp_widget_recent_comments_style')) {
+        remove_filter('wp_head', 'wp_widget_recent_comments_style');
+    }
+});
+
+/**
+* Clean up gallery output in wp
+*/
+add_filter('gallery_style', function ($css) {
+    // Remove injected CSS from gallery
+    return preg_replace("!<style type='text/css'>(.*?)</style>!s", '', $css);
+});
