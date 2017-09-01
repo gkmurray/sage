@@ -18,7 +18,7 @@ add_filter('body_class', function (array $classes) {
     }
 
     /** Add a body class for custom posts types */
-    global $post;
+    $post = get_post();
     if (is_single() && $post->post_type !== 'post') {
         $classes[] = $post->post_type;
     }
