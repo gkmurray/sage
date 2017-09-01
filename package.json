@@ -88,7 +88,7 @@
     "build:production": "webpack --progress -p --config resources/assets/build/webpack.config.js",
     "build:profile": "webpack --progress --profile --json --config resources/assets/build/webpack.config.js",
     "start": "webpack --hide-modules --watch --config resources/assets/build/webpack.config.js",
-    "bundle": "cross-var zip -r $npm_package_name-$npm_package_version.zip app dist vendor resources/acf-json resources/views resources/index.php resources/functions.php resources/style.css resources/screenshot.png",
+    "bundle": "cross-var zip -r $npm_package_name-$npm_package_version.zip app dist vendor config resources/acf-json resources/languages resources/views resources/index.php resources/functions.php resources/style.css resources/screenshot.png",
     "rmbundle": "cross-var rm $npm_package_name-$npm_package_version.zip",
     "rmdist": "rimraf dist",
     "lint": "npm run -s lint:scripts && npm run -s lint:styles",
