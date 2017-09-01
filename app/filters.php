@@ -17,6 +17,12 @@ add_filter('body_class', function (array $classes) {
         }
     }
 
+    /** Add a body class for custom posts types */
+    global $post;
+    if (is_single() && $post->post_type !== 'post') {
+        $classes[] = $post->post_type;
+    }
+
     /** Add class if sidebar is active */
     if (display_sidebar()) {
         $classes[] = 'sidebar-primary';
