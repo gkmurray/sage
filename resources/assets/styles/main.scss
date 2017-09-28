@@ -11,6 +11,11 @@
  * @see https://github.com/webpack-contrib/sass-loader#imports
  */
 // @import "~some-node-module";
+@import "~motion-ui/src/motion-ui";
+
+@include motion-ui-transitions;
+@include motion-ui-animations;
+
 
 /** Import theme styles */
 @import "common/global";

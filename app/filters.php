@@ -101,12 +101,12 @@ add_filter('get_search_form', function ($form) {
     <form role="search" method="get" class="search-form" action="<?=home_url('/'); ?>">
         <div class="input-group">
             <span class="input-group-label"><i class="fa fa-search"></i></span>
-            <input 
-                class="search-field input-group-field" 
-                type="text" 
-                value="<?=get_search_query(); ?>" 
-                name="s" 
-                id="s" 
+            <input
+                class="search-field input-group-field"
+                type="text"
+                value="<?=get_search_query(); ?>"
+                name="s"
+                id="s"
                 placeholder="Search..." />
             <div class="input-group-button">
                 <input type="submit" class="search-submit button" value="<?=esc_attr__('Search'); ?>" />
@@ -122,19 +122,6 @@ add_filter('get_search_form', function ($form) {
  */
 add_filter('next_post_link', 'App\\post_link_attributes');
 add_filter('previous_post_link', 'App\\post_link_attributes');
-
-/**
- * Add a body class for custom posts types
- */
-add_filter('body_class', function ($classes) {
-    global $post;
-
-    if (is_single() && $post->post_type !== 'post') {
-        $classes[] = $post->post_type;
-    }
-
-    return $classes;
-});
 
 /**
  * Add custom image size to the list of selectable sizes
