@@ -131,8 +131,7 @@
   },
   "dependencies": {
     "font-awesome": "^4.7.0",
-    "foundation-sites": "6.3.0",
-    "jquery": "1.12.4 - 3",
-    "motion-ui": "^1.2.2"
+    "foundation-sites": "^6.4.0",
+    "jquery": "1.12.4 - 3"
   }
 }
