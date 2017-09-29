@@ -35,8 +35,8 @@ class AcfLoader {
     private $hide_admin_menu = false;
 
     public function __construct() {
-        $this->acf_path = get_stylesheet_directory() . '/../vendor/advanced-custom-fields-pro/';
-        $this->acf_dir = get_stylesheet_directory_uri() . '/../vendor/advanced-custom-fields-pro/';
+        $this->acf_path = get_stylesheet_directory() . '/../vendor/advanced-custom-fields/advanced-custom-fields-pro/';
+        $this->acf_dir = get_stylesheet_directory_uri() . '/../vendor/advanced-custom-fields/advanced-custom-fields-pro/';
 
         // Check for and include ACF Pro files
         if (!class_exists('acf') && file_exists($this->acf_path. 'acf.php')) {
