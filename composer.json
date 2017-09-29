@@ -28,7 +28,9 @@
   },
   "autoload": {
     "psr-4": {
-      "App\\": "app/"
+      "App\\": "app/",
+      "App\\Controllers\\": "app/controllers",
+      "App\\Lib\\": "app/lib"
     }
   },
   "require": {
