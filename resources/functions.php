@@ -6,6 +6,7 @@
 
 use Roots\Sage\Config;
 use Roots\Sage\Container;
+use App\Lib\AcfLoader;
 
 /**
  * Helper function for prettying up errors
@@ -69,7 +70,6 @@ array_map(function ($file) use ($sage_error) {
     'sidebars',
     'shortcodes',
     'posttypes',
-    'acf_settings',
 ]);
 
 /**
@@ -103,46 +103,6 @@ Container::getInstance()
         ]);
     }, true);
 
-/**
- * Check for and include ACF Pro files
- */
-if (!class_exists('acf') && file_exists(get_stylesheet_directory() . '/../vendor/advanced-custom-fields-pro/acf.php')) {
-    include_once(get_stylesheet_directory() . '/../vendor/advanced-custom-fields-pro/acf.php');
-
-    // Set ACF path
-    add_filter('acf/settings/path', function ($path) {
-        $path = get_stylesheet_directory() . '/../vendor/advanced-custom-fields-pro/';
-        return $path;
-    });
-
-    // Set ACF dir
-    add_filter('acf/settings/dir', function ($dir) {
-        $dir = get_stylesheet_directory_uri() . '/../vendor/advanced-custom-fields-pro/';
-        return $dir;
-    });
-
-    // Hide ACF menu item
-    // TODO: Update this conditional to use defined constant from wp_config.php
-    if (false) {
-        add_filter('acf/settings/show_admin', '__return_false');
-    }
-} elseif (!class_exists('acf')) {
-    /**
-    * Display warning if ACF is not installed
-    */
-    add_action('admin_notices', function () {
-        $class = 'notice notice-error';
-        $message = __('ACF not activated. Make sure you activate the Advanced Custom Fields plugin in the
-            WordPress admin area, or include the files in the vendor folder.', 'sage');
-
-        printf('<div class="%1$s"><p>%2$s</p></div>', esc_attr($class), esc_html($message));
-    });
-
-    add_filter('template_include', function ($template) use ($sage_error) {
-        $sage_error(
-            __('Make sure you activate the Advanced Custom Fields plugin in the WordPress admin area, or include
-             the files in the vendor folder.', 'sage'),
-            __('ACF not activated', 'sage')
-        );
-    });
-}
+AcfLoader::get_instance()
+    ->register_actions()
+    ->register_custom_location_rules();
