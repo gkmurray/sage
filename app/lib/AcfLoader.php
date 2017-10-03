@@ -4,7 +4,8 @@ namespace App\Lib;
 
 use App\Lib\Error;
 
-class AcfLoader {
+class AcfLoader
+{
 
     /**
      * The current singleton instance (if any)
@@ -34,9 +35,10 @@ class AcfLoader {
      */
     private $hide_admin_menu = false;
 
-    public function __construct() {
-        $this->acf_path = get_stylesheet_directory() . '/../vendor/advanced-custom-fields/advanced-custom-fields-pro/';
-        $this->acf_dir = get_stylesheet_directory_uri() . '/../vendor/advanced-custom-fields/advanced-custom-fields-pro/';
+    public function __construct()
+    {
+        $this->acf_path = get_stylesheet_directory().'/../vendor/advanced-custom-fields/advanced-custom-fields-pro/';
+        $this->acf_dir = get_stylesheet_directory_uri().'/../vendor/advanced-custom-fields/advanced-custom-fields-pro/';
 
         // Check for and include ACF Pro files
         if (!class_exists('acf') && file_exists($this->acf_path. 'acf.php')) {
@@ -80,7 +82,8 @@ class AcfLoader {
      *
      * @return object  this
      */
-    public static function get_instance() {
+    public static function get_instance()
+    {
         if (self::$instance === false) {
             self::$instance = new AcfLoader;
         }
@@ -93,7 +96,8 @@ class AcfLoader {
      *
      * @return object  this
      */
-    public function register_actions() {
+    public function register_actions()
+    {
         /**
          * Create a Theme Options page for ACF fields
          */
@@ -127,7 +131,8 @@ class AcfLoader {
      * @link https://www.advancedcustomfields.com/resources/custom-location-rules/
      * @return void
      */
-    public function register_custom_location_rules() {
+    public function register_custom_location_rules()
+    {
         /**
          * Add Post Category Ancestor rule for evaluating on Posts with a common Parent Category
          */
