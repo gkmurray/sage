@@ -16,7 +16,7 @@
     }
 
     .entry__summary {
-        @include multi-line-ellipse(1rem, 1.6, 3);
+        @include multi-line-ellipsis(1rem, 1.6, 3);
     }
 
     .entry__content {

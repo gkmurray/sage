@@ -143,8 +143,8 @@
     }
 }
 
-/** Break text based with ellipses on max lines to show, with fallback */
-@mixin multi-line-ellipse($font-size, $line-height, $lines-to-show) {
+/** Break text based with ellipsis on max lines to show, with fallback */
+@mixin multi-line-ellipsis($font-size, $line-height, $lines-to-show) {
     padding-left: 1px;
     padding-right: 1px;
     display: block; // Fallback for non-webkit
