@@ -3,7 +3,7 @@
   @include('partials.head')
   <body @php(body_class())>
     @php(do_action('get_header'))
-    @include('partials.header')
+    @include('layouts.header')
     <div class="wrap container" role="document">
       <div class="content">
         <main class="main column small-12 {{ App\display_sidebar() ? 'large-8' : '' }}">
@@ -17,7 +17,7 @@
       </div>
     </div>
     @php(do_action('get_footer'))
-    @include('partials.footer')
+    @include('layouts.footer')
     @php(wp_footer())
   </body>
 </html>

@@ -3,15 +3,15 @@
 namespace App;
 
 /**
-* Define menus
-*/
-function primary_navigation()
+ * Define menus
+ */
+function menu()
 {
     wp_nav_menu([
         'container' => false,
-        'menu' => __('Primary Navigation', 'sage'),
+        'menu' => __('Menu', 'sage'),
         'menu_class' => 'menu horizontal',
-        'theme_location' => 'primary_navigation',
+        'theme_location' => 'menu',
         'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
         'link_before' => '<span class="link-wrap">',
         'link_after' => '</span>',
@@ -22,10 +22,9 @@ function primary_navigation()
 }
 
 /**
-* Menu walker to indent submenu ul elements for
-* Foundation styles
-* @link https://github.com/brettsmason
-*/
+ * Menu walker to indent submenu ul elements for Foundation styles
+ * @link https://github.com/brettsmason
+ */
 class TopbarMenuWalker extends \Walker_Nav_Menu
 {
     public function start_lvl(&$output, $depth = 0, $args = array())

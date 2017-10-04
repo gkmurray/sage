@@ -11,8 +11,8 @@
   @endif
 
   @while(have_posts()) @php(the_post())
-    @include('partials.content-search')
+    @include('content.content-search')
   @endwhile
 
-  {!! App\the_post_pagination() !!}
+  @include('partials.pagination')
 @endsection

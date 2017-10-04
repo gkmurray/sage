@@ -103,6 +103,9 @@ Container::getInstance()
         ]);
     }, true);
 
+/**
+ * Bootstrap Advanced Custom Fields
+ */
 AcfLoader::get_instance()
     ->register_actions()
     ->register_custom_location_rules();

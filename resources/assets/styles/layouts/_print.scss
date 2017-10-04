@@ -1,0 +1,12 @@
+/**
+ * For paged material and for documents viewed on screen in print preview mode.
+ *
+ * @link https://developer.mozilla.org/en-US/docs/Web/CSS/Paged_Media
+ * @see https://foundation.zurb.com/sites/docs/typography-base.html#print-styles
+ */
+
+@media print {
+    .header {
+        @extend .hide-for-print;
+    }
+}

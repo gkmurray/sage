@@ -53,7 +53,7 @@ add_filter('body_class', function (array $classes) {
  * Add "… Continued" to the excerpt
  */
 add_filter('excerpt_more', function () {
-    return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'sage') . '</a>';
+    return '&hellip;';
 });
 
 /**
@@ -93,28 +93,13 @@ add_filter('comments_template', function ($comments_template) {
 });
 
 /**
- * Repace default search form with Foundation search form
+ * Repace default search form with searchform.blade.php
  */
-add_filter('get_search_form', function ($form) {
-    ob_start(); ?>
-
-    <form role="search" method="get" class="search-form" action="<?=home_url('/'); ?>">
-        <div class="input-group">
-            <span class="input-group-label"><i class="fa fa-search"></i></span>
-            <input
-                class="search-field input-group-field"
-                type="text"
-                value="<?=get_search_query(); ?>"
-                name="s"
-                id="s"
-                placeholder="Search..." />
-            <div class="input-group-button">
-                <input type="submit" class="search-submit button" value="<?=esc_attr__('Search'); ?>" />
-            </div>
-        </div>
-    </form>
-
-    <?php return ob_get_clean();
+add_filter('get_search_form', function ($search_form) {
+    ob_start();
+    include(template_path(locate_template("views/partials/searchform.blade.php")));
+    $search_form = ob_get_clean();
+    return $search_form;
 });
 
 /**
