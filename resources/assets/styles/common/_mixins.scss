@@ -149,7 +149,7 @@
     padding-right: 1px;
     display: block; // Fallback for non-webkit
     display: -webkit-box;
-    height: $font-size*$line-height*$lines-to-show; // Fallback for non-webkit
+    max-height: $font-size*$line-height*$lines-to-show; // Fallback for non-webkit
     font-size: $font-size;
     line-height: $line-height;
     -webkit-line-clamp: $lines-to-show;
