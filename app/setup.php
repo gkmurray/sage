@@ -72,6 +72,11 @@ add_action('after_setup_theme', function () {
     * @link https://developer.wordpress.org/reference/functions/add_image_size/
     */
     add_image_size('xlarge', 1920);
+
+    /**
+    * Make theme available for translation.
+    */
+    load_theme_textdomain('sage', get_template_directory() . '/languages');
 }, 20);
 
 /**
