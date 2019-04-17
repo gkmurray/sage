@@ -1,5 +1,7 @@
-FROM wordpress:latest
+FROM wordpress:php7.1
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN useradd -rm -d /home/php -s /bin/bash -g www-data -G sudo -u 1000 php
+COPY docker/bin/entrypoint.sh /custom-entrypoint.sh
+
+ENTRYPOINT [ "/custom-entrypoint.sh" ]
