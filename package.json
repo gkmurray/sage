@@ -30,10 +30,10 @@
     "bundle": "cross-var zip -r $npm_package_name-$npm_package_version.zip app dist vendor config resources/acf-json resources/languages resources/views resources/index.php resources/functions.php resources/style.css resources/screenshot.png",
     "rmbundle": "cross-var rm $npm_package_name-$npm_package_version.zip",
     "rmdist": "rimraf dist",
-    "lint": "npm run -s lint:scripts && npm run -s lint:styles",
+    "lint": "yarn run -s lint:scripts && yarn run -s lint:styles",
     "lint:scripts": "eslint resources/assets/scripts resources/assets/build",
     "lint:styles": "stylelint \"resources/assets/styles/**/*.{css,sass,scss,sss,less}\"",
-    "test": "npm run -s lint"
+    "test": "yarn run -s lint"
   },
   "engines": {
     "node": ">= 8.0.0"
